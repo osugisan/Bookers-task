@@ -1,8 +1,21 @@
+<p id="notice"><%= notice %></p>
 <h1>Editing Book</h1>
 <%= form_with model:@book, local:true do |f| %>
-<p>Title</p>
-<%= f.text_field :title %>
-<p>Body</p>
-<%= f.text_area :body%>
-<%= f.submit "Update Book" %>
+<% if @book.errors.any? %>
+  <h2><%= pluralize(@book.errors.count, "error") %> prohibited this product from being saved:</h2>
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
 <% end %>
+<div>Title</div>
+<div class="txt"><%= f.text_field :title%></div>
+<div>Body</div>
+<div class="txt"></div><%= f.text_area :body%></div>
+<div class="txt"><%= f.submit "Update Book" %></div>
+<% end %>
+
+<%= link_to "Show", book_path(@book) %>
+|
+<%= link_to "Back", books_path %>
